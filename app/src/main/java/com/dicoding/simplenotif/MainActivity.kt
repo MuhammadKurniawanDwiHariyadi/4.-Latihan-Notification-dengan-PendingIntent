@@ -65,6 +65,13 @@ class MainActivity : AppCompatActivity() {
             intent,
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
         )
+        
+        /*
+            Pending Intent digunakan untuk memberikan action jika notifikasi disentuh.
+            Parameter yang diperlukan untuk membuat Intent adalah Context, Request Code, Intent, dan Flag.
+            Selain ke halaman Web, anda juga bisa mengganti intent tersebut ke Activity
+            dengan menggunakan Intent untuk memanggil Activity seperti biasanya.
+         */
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -73,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             .setContentText(message) // Text yang akan muncul di bawah judul notifikasi (wajib ada).
             .setPriority(NotificationCompat.PRIORITY_DEFAULT) // Untuk menentukan tingkat kepentingan dari notifiksai yang ditampilkan
             .setSubText(getString(R.string.notification_subtext)) // Text ini yang akan muncul di bawah content text atau diatas sebelahan dengan nameApp
-            .setContentIntent(pendingIntent) // untuk menambahkan content/item jika pada notifikassi status bar di tekan
+            .setContentIntent(pendingIntent) // untuk menambahkan Intent jika pada notifikassi status bar di tekan
             .setAutoCancel(true) // Digunakan untuk menghapus notifikasi setelah ditekan.
 
         // untuk versi android diatas Oreo
